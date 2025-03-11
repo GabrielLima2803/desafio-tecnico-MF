@@ -67,8 +67,10 @@ cd desafio-tecnico-MF
 #Copie a as variveis de ambiente
 cp backend/.env.example backend/.env
 
-# Construa e inicie os containers
-docker-compose up --build 
+# Construa os containers
+docker-compose build --no-cache
+
+docker-compose up 
 
 # Acesse os serviços:
 # Frontend: http://localhost:8080
