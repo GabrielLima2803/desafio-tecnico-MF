@@ -25,12 +25,12 @@ Desafio de uma aplicação fullstack para gestão de transações financeiras co
   - Validação de categorias em uso
 
 - **Extra**
-  - Interface responsiva com Vuetify
-  - Tipagem estática com TypeScript
+  - Interface responsiva com **Vuetify**
+  - Tipagem estática com **TypeScript**
   - Estado global com Pinia
-  - Comunicação API com Axios
+  - Comunicação API com **Axios**
   - Feedback visual com toasts
-  - Filtros
+  - **Filtros**
 
 ## 🛠 Tecnologias
 
@@ -46,6 +46,9 @@ Desafio de uma aplicação fullstack para gestão de transações financeiras co
 ![Sanctum](https://img.shields.io/badge/-Sanctum-FF2D20?logo=laravel)  
 ![MySQL](https://img.shields.io/badge/-MySQL%208.0-4479A1?logo=mysql)  
 ![Eloquent](https://img.shields.io/badge/-Eloquent-FF2D20?logo=laravel)
+
+**DevOps & Tools**  
+![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker)
 
 ## ⚙️ Pré-requisitos
 
