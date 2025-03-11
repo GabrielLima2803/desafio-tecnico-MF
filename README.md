@@ -152,6 +152,9 @@ DB_USERNAME=finance_user
 DB_PASSWORD=senha_forte
 ```
 
+## Demostração
+![Demonstração da Aplicação](./docs/mf-desafio.gif)
+
 
 ## 🔄 Rotas da API (Endpoints)
 
