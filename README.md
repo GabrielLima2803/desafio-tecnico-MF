@@ -62,6 +62,8 @@ Desafio de uma aplicação fullstack para gestão de transações financeiras co
 ```bash
 # Clone o repositório
 git clone https://github.com/GabrielLima2803/desafio-tecnico-MF.git
+
+#Entre no repositório
 cd desafio-tecnico-MF
 
 #Copie a as variveis de ambiente
@@ -70,6 +72,7 @@ cp backend/.env.example backend/.env
 # Construa os containers
 docker-compose build --no-cache
 
+#Inicie os containers
 docker-compose up 
 
 # Acesse os serviços:
