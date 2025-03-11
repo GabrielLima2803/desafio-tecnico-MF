@@ -117,7 +117,7 @@ php artisan migrate
 php artisan serve --port=8000
 ```
 
-**Backend (Laravel 11+)**
+**Frontend (Vuejs3)**
 ```bash
 # Acesse o diretório do frontend
 cd frontend
