@@ -27,7 +27,7 @@ const router = useRouter();
 onMounted(() => {
   const token = localStorage.getItem("authToken");
   if (token) {
-    router.push("/home");
+    router.push("/dashbord");
   } else {
     router.push("/");
   }

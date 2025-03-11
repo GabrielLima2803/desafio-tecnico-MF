@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     default-mysql-client \
     && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip \
-    && a2enmod rewrite \
+    && a2enmod rewrite headers env \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

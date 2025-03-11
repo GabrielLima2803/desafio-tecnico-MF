@@ -13,15 +13,10 @@
         <v-btn @click="$emit('update:modelValue', false)">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
-
   <v-snackbar v-model="snackbar" color="green" timeout="6000" location="top right" >
     {{ succesMessage }}
   </v-snackbar>
-
-  <v-snackbar v-model="snackbar" color="red" timeout="6000" location="top right" >
-    {{ errorMessages }}
-  </v-snackbar>
+  </v-dialog>
 </template>
 
 <script setup lang="ts">

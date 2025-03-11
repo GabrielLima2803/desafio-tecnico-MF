@@ -1,16 +1,29 @@
-import axios from "axios";
+// src/plugins/axios.ts
+import axios from 'axios'
+import { useLoadingStore } from '@/stores/loading'
 
-axios.defaults.baseURL = "http://localhost:8000";
+export function setupAxios() {
+  const loadingStore = useLoadingStore()
 
-axios.interceptors.request.use(
-  (config) => {
-  const token = localStorage.getItem("authToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-},
-  (error) => {
-    return Promise.reject(error);
-  }
-)
+  axios.defaults.baseURL = 'http://localhost:8000'
+
+  axios.interceptors.request.use(config => {
+    loadingStore.show()
+    const token = localStorage.getItem('authToken')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  })
+
+  axios.interceptors.response.use(
+    response => {
+      loadingStore.hide()
+      return response
+    },
+    error => {
+      loadingStore.hide()
+      return Promise.reject(error)
+    }
+  )
+}
