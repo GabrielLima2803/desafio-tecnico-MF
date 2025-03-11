@@ -76,7 +76,7 @@ docker-compose build --no-cache
 docker-compose up 
 
 # Acesse os serviços:
-# Frontend: http://localhost:8080
+# Frontend: http://localhost:3000
 # Backend: http://localhost:8000
 # MySQL: porta 3306
 ```
