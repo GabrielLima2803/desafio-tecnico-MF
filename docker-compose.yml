@@ -7,6 +7,7 @@ services:
       - "8000:80"
     volumes:
       - ./backend:/var/www/html
+      - /var/www/html/vendor
     environment:
       APP_ENV: local
       DB_CONNECTION: mysql
