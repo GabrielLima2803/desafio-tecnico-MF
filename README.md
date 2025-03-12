@@ -4,7 +4,7 @@
 [![Laravel](https://img.shields.io/badge/Laravel-11+-FF2D20?logo=laravel)](https://laravel.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql)](https://www.mysql.com/)
 
-Desafio de uma aplicação fullstack para gestão de transações financeiras com autenticação de usuários, desenvolvida com Vue 3 no frontend e Laravel 11+ no backend.
+Este projeto é um desafio fullstack que visa oferecer uma solução completa para a gestão de transações financeiras. A aplicação possibilita o cadastro e autenticação de usuários, permitindo o gerenciamento de movimentações (entradas e saídas) e categorias associadas. Desenvolvida com **Vue 3** no frontend e **Laravel 11+** no backend, ela integra uma experiência moderna e responsiva, contando também com recursos adicionais como tipagem estática com **TypeScript**, estado global com **Pinia** e interface estilizada com **Vuetify**.
 
 ## ✨ Funcionalidades
 
@@ -34,21 +34,21 @@ Desafio de uma aplicação fullstack para gestão de transações financeiras co
 
 ## 🛠 Tecnologias
 
-**Frontend**  
-![Vue](https://img.shields.io/badge/-Vue%203-4FC08D?logo=vuedotjs)  
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript)  
-![Vuetify](https://img.shields.io/badge/-Vuetify-1867C0?logo=vuetify)  
-![Pinia](https://img.shields.io/badge/-Pinia-FFD02F?logo=pinia)  
-![Axios](https://img.shields.io/badge/-Axios-5A29E4?logo=axios)
+### Frontend
+- **Vue 3**
+- **TypeScript**
+- **Vuetify**
+- **Pinia**
+- **Axios**
 
-**Backend**  
-![Laravel](https://img.shields.io/badge/-Laravel%2011+-FF2D20?logo=laravel)  
-![Sanctum](https://img.shields.io/badge/-Sanctum-FF2D20?logo=laravel)  
-![MySQL](https://img.shields.io/badge/-MySQL%208.0-4479A1?logo=mysql)  
-![Eloquent](https://img.shields.io/badge/-Eloquent-FF2D20?logo=laravel)
+### Backend
+- **Laravel 11+**
+- **Laravel Sanctum**
+- **MySQL 8.0**
+- **Eloquent ORM**
 
-**DevOps & Tools**  
-![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker)
+### DevOps & Ferramentas
+- **Docker**
 
 ## ⚙️ Pré-requisitos
 
