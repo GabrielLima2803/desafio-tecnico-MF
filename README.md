@@ -28,8 +28,10 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   - [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
     - [1. Criação do Banco MySQL](#1-criação-do-banco-mysql)
     - [1. Configuração do Ambiente](#1-configuração-do-ambiente)
-  - [Demostração](#demostração)
+  - [Docker e Docker-Compose](#docker-e-docker-compose)
+    - [Docker-Compose](#docker-compose)
   - [Rotas da API (Endpoints)](#rotas-da-api-endpoints)
+  - [Demostração](#demostração)
   - [Contato](#contato)
 
 ## Funcionalidades
@@ -235,9 +237,74 @@ DB_USERNAME=finance_user
 DB_PASSWORD=senha_forte
 ```
 
-## Demostração
-![Demonstração da Aplicação](./docs/mf-desafio.gif)
+## Docker e Docker-Compose
 
+O projeto utiliza **Docker** para containerizar a aplicação, garantindo um ambiente consistente em todas as etapas (desenvolvimento, testes e produção). Foram criados dois **Dockerfiles** específicos:
+
+- **Frontend:** Configurado para utilizar o **Nginx** como servidor web, servindo a aplicação Vue 3 de forma rápida e eficiente.
+- **Backend:** Configurado para rodar a aplicação Laravel em um servidor **Apache**, proporcionando um ambiente robusto para o PHP.
+
+### Docker-Compose
+
+O arquivo `docker-compose.yml` orquestra a execução dos serviços do projeto, definindo a interação entre o backend, frontend e banco de dados. Confira a configuração:
+
+```yaml
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www/html
+      - /var/www/html/vendor
+    environment:
+      APP_ENV: local
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-psecret"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:
+    driver: bridge
+```
+Esta configuração com Docker e Docker-Compose facilita a implantação e manutenção do projeto, garantindo que cada serviço opere em um ambiente isolado, mas integrado, o que contribui para a escalabilidade e confiabilidade da aplicação.
 
 ## Rotas da API (Endpoints)
 
@@ -254,7 +321,8 @@ DB_PASSWORD=senha_forte
 | POST   | `/api/categories`          | Criar categoria             |
 | DELETE | `/api/categories/{id}`     | Excluir categoria           |
 
-
+## Demostração
+![Demonstração da Aplicação](./docs/mf-desafio.gif)
 
 ## Contato
 
