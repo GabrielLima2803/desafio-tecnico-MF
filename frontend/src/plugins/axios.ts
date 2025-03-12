@@ -1,4 +1,3 @@
-// src/plugins/axios.ts
 import axios from 'axios'
 import { useLoadingStore } from '@/stores/loading'
 
