@@ -6,7 +6,33 @@
 
 Este projeto é um desafio fullstack que visa oferecer uma solução completa para a gestão de transações financeiras. A aplicação possibilita o cadastro e autenticação de usuários, permitindo o gerenciamento de movimentações (entradas e saídas) e categorias associadas. Desenvolvida com **Vue 3** no frontend e **Laravel 11+** no backend, ela integra uma experiência moderna e responsiva, contando também com recursos adicionais como tipagem estática com **TypeScript**, estado global com **Pinia** e interface estilizada com **Vuetify**.
 
-## ✨ Funcionalidades
+## Sumário
+
+- [Gerenciamento de Movimentações Financeiras](#gerenciamento-de-movimentações-financeiras)
+  - [Sumário](#sumário)
+  - [Funcionalidades](#funcionalidades)
+  - [Funcionalidades Extras](#funcionalidades-extras)
+    - [Dark Mode Inteligente](#dark-mode-inteligente)
+    - [Exportação de Dados](#exportação-de-dados)
+    - [Visualização Gráfica Avançada](#visualização-gráfica-avançada)
+    - [Funcionalidades Técnicas](#funcionalidades-técnicas)
+  - [Tecnologias](#tecnologias)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+    - [DevOps \& Ferramentas](#devops--ferramentas)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+    - [Método 1: Docker (Recomendado)](#método-1-docker-recomendado)
+    - [Acesso aos Serviços](#acesso-aos-serviços)
+    - [Método 2: Instalação Local](#método-2-instalação-local)
+  - [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
+    - [1. Criação do Banco MySQL](#1-criação-do-banco-mysql)
+    - [1. Configuração do Ambiente](#1-configuração-do-ambiente)
+  - [Demostração](#demostração)
+  - [Rotas da API (Endpoints)](#rotas-da-api-endpoints)
+  - [Contato](#contato)
+
+## Funcionalidades
 
 - **Autenticação de Usuários**
   - Login com validação de credenciais
@@ -25,9 +51,9 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   - Validação de categorias em uso
 
 
-## ✨ Funcionalidades Extras
+## Funcionalidades Extras
 
-### 🌓 Dark Mode Inteligente
+### Dark Mode Inteligente
 - **Toggle de Tema com Persistência**
   - Botão dedicado na barra de navegação
   - Alternância suave entre temas claro/escuro
@@ -37,7 +63,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 
   ![Exemplo Dark Mode](docs/dark-mode-example.png)
 
-### 📤 Exportação de Dados
+### Exportação de Dados
 - **Relatórios em PDF Profissionais**
   - Layout otimizado para impressão
   - Cabeçalho com dados do usuário
@@ -55,7 +81,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   
   ![Exemplo Excel](docs/excel-example.png)
 
-### 📊 Visualização Gráfica Avançada
+### Visualização Gráfica Avançada
 - **Gráfico de Pizza por Categorias**
   - Distribuição percentual de gastos
   - Legenda interativa com valores
@@ -72,7 +98,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   
   ![Exemplo Gráficos](docs/chart-pie.png)
 
-### ⚙️ Funcionalidades Técnicas
+### Funcionalidades Técnicas
 - Interface responsiva com **Vuetify 3**
 - Tipagem estática com **TypeScript**
 - Gerenciamento de estado com **Pinia**
@@ -80,7 +106,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 - Sistema de notificações com toasts
 - Filtros avançados com persistência
 
-## 🛠 Tecnologias
+## Tecnologias
 
 ### Frontend
 - **Vue 3**
@@ -99,7 +125,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 ### DevOps & Ferramentas
 - **Docker**
 
-## ⚙️ Pré-requisitos
+## Pré-requisitos
 
 - Node.js 18+
 - PHP 8.1+
@@ -107,9 +133,9 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 - MySQL 8.0+
 - Docker (opcional para instalação containerizada)
 
-## 📦 Instalação
+## Instalação
 
-### 🐳 Método 1: Docker (Recomendado)
+### Método 1: Docker (Recomendado)
 
 ```bash
 # Clone o repositório
@@ -180,7 +206,7 @@ npm install
 npm run dev
 ```
 
-## 🔧 Configuração do Banco de Dados
+## Configuração do Banco de Dados
 
 ### 1. Criação do Banco MySQL
 Execute no MySQL:
@@ -207,7 +233,7 @@ DB_PASSWORD=senha_forte
 ![Demonstração da Aplicação](./docs/mf-desafio.gif)
 
 
-## 🔄 Rotas da API (Endpoints)
+## Rotas da API (Endpoints)
 
 | Método | Endpoint                   | Descrição                   |
 |--------|----------------------------|-----------------------------|
