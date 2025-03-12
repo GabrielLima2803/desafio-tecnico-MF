@@ -42,9 +42,9 @@
           clearable
         />
       </v-col>
-      <v-col cols="12" sm="2" class="text-right">
+      <v-col cols="12" sm="2" class="d-flex text-right ga-2 mb-4">
         <v-btn color="primary" @click="applyFilters">Filtrar</v-btn>
-        <v-btn class="my-1 mr-1" @click="resetFilters">Limpar</v-btn>
+        <v-btn class="mr-1" @click="resetFilters">Limpar</v-btn>
       </v-col>
     </v-row>
 

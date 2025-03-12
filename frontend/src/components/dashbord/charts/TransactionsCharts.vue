@@ -3,12 +3,17 @@
     <h1 class="text-h4 my-4">Transações Gráficos</h1>
   </v-fade-transition>
 
-  <div>
-    <PieChart :chartData="pieChartData" :chartOptions="pieChartOptions" />
-  </div>
+  <div class="charts-container" v-if="transactionStore.transactions.length">
+    <div class="chart-wrapper">
+      <PieChart :chartData="pieChartData" :chartOptions="pieChartOptions" />
+    </div>
 
-  <div class="mt-6">
-    <LineChart :chartData="lineChartData" :chartOptions="lineChartOptions" />
+    <div class="chart-wrapper">
+      <LineChart :chartData="lineChartData" :chartOptions="lineChartOptions" />
+    </div>
+  </div>
+  <div v-else class="wrapper-empty">
+    <h1 class="text-empty">Sem trasações, vá e cadastre uma transação...</h1>
   </div>
 </template>
 
@@ -134,3 +139,42 @@ const lineChartOptions = ref({
   },
 })
 </script>
+
+
+<style scoped>
+.charts-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.chart-wrapper {
+  flex: 1;
+  min-width: 400px;
+  height: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.text-length{
+  height: 100vh;
+  text-align: center;
+}
+.wrapper-empty{
+  display: flex;
+  margin-top: 200px;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 960px) {
+  .charts-container {
+    flex-direction: column;
+  }
+
+  .chart-wrapper {
+    min-width: 100%;
+  }
+}
+</style>
