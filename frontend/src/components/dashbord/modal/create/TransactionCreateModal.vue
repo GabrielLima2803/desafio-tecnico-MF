@@ -15,10 +15,24 @@
             label="Categoria"
             item-title="name"
             item-value="id"
+            :error="!!errorMessages"
           />
-          <v-select v-model="transaction.type" :items="types" label="Tipo" />
-          <v-text-field v-model="transaction.value" label="Valor (R$)" type="number" />
-          <v-text-field v-model="transaction.description" label="Descrição" />
+          <v-select
+            v-model="transaction.type"
+            :items="types"
+            label="Tipo"
+            :error="!!errorMessages"
+          />
+          <v-text-field
+            v-model="transaction.value"
+            label="Valor (R$)"
+            type="number"
+            :error="!!errorMessages"
+          />
+          <v-text-field
+            v-model="transaction.description"
+            label="Descrição"
+          />
         </v-form>
       </v-card-text>
       <v-card-actions>
@@ -27,10 +41,15 @@
         <v-btn @click="$emit('update:modelValue', false)">Cancelar</v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-snackbar v-model="snackbar" color="green" timeout="6000" location="top right">
+      {{ succesMessage }}
+    </v-snackbar>
+
+    <v-snackbar v-model="errorSnackbar" color="red" timeout="6000" location="top right">
+      {{ errorMessages }}
+    </v-snackbar>
   </v-dialog>
-  <v-snackbar v-model="snackbar" color="green" timeout="6000" location="top right" >
-    {{ succesMessage }}
-  </v-snackbar>
 </template>
 
 <script setup lang="ts">
@@ -48,7 +67,9 @@ const categoryStore = useCategoryStore()
 const emit = defineEmits(['update:modelValue'])
 
 const snackbar = ref(false)
+const errorSnackbar = ref(false)
 const succesMessage = ref('Transação criada com sucesso!')
+const errorMessages = ref('')
 
 const types = ref(['entrada', 'saida'])
 
@@ -60,27 +81,51 @@ const transaction = ref<TransactionCreateData>({
 })
 
 async function saveTransaction() {
-  try {
-    if (!transaction.value.category_id) {
-      throw new Error('Por favor, selecione uma categoria.')
-    }
+  errorMessages.value = ''
 
+  if (!transaction.value.category_id) {
+    errorMessages.value = 'Por favor, selecione uma categoria.'
+    errorSnackbar.value = true
+    return
+  }
+
+  if (!transaction.value.type) {
+    errorMessages.value = 'Por favor, selecione o tipo da transação.'
+    errorSnackbar.value = true
+    return
+  }
+
+  if (!transaction.value.value || Number(transaction.value.value) <= 0) {
+    errorMessages.value = 'Por favor, insira um valor válido maior que zero.'
+    errorSnackbar.value = true
+    return
+  }
+  if (!transaction.value.description) {
+    errorMessages.value = 'Por favor, insira uma descrição.'
+    errorSnackbar.value = true
+    return
+  }
+  
+  try {
     const data = {
       ...transaction.value,
       value: Number(transaction.value.value),
     }
 
-    await transactionStore.postTransaction(data
-    )
+    await transactionStore.postTransaction(data)
     snackbar.value = true
     emit('update:modelValue', false)
+
     transaction.value = {
       type: '',
-      value: 0,
+      value: null,
       category_id: null,
       description: '',
     }
   } catch (error: unknown) {
+    errorMessages.value = 'Erro ao salvar a transação. Tente novamente.'
+    errorSnackbar.value = true
+
     if (error instanceof Error) {
       console.error('Erro ao salvar transação:', error.message)
     } else {
@@ -91,6 +136,5 @@ async function saveTransaction() {
 
 onMounted(async () => {
   await categoryStore.getCategories()
-  console.log(categoryStore.categories)
 })
 </script>

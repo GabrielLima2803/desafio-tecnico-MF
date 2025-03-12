@@ -14,7 +14,7 @@
     />
 
     <v-fade-transition>
-      <h1 class="text-h4 my-4">Transações</h1>
+      <h1 class="text-h4 my-4">Transações Lista</h1>
     </v-fade-transition>
 
     <v-row class="mb-4" align="center" justify="space-between">

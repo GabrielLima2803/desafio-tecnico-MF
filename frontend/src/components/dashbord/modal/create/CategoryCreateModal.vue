@@ -16,6 +16,9 @@
   <v-snackbar v-model="snackbar" color="green" timeout="6000" location="top right" >
     {{ succesMessage }}
   </v-snackbar>
+  <v-snackbar v-model="errorSnackbar" color="red" timeout="6000" location="top right">
+      {{ errorMessages }}
+    </v-snackbar>
   </v-dialog>
 </template>
 
@@ -25,6 +28,7 @@ import { useCategoryStore } from "../../../../stores/category";
 
 const categoryStore = useCategoryStore();
 const snackbar = ref(false);
+const errorSnackbar = ref(false);
 const succesMessage = ref("");
 const errorMessages = ref("");
 
@@ -39,20 +43,26 @@ const categoryName = ref("");
 onMounted(() => {
   categoryName.value = "";
   snackbar.value = false;
+  errorSnackbar.value = false;
 })
 
 async function saveCategory() {
+  if (!categoryName.value.trim()) {
+    errorMessages.value = "Por favor, preencha todos os campos!";
+    errorSnackbar.value = true;
+    return;
+  }
+
   try {
     await categoryStore.createCategory(categoryName.value);
-  succesMessage.value = "Categoria criada com sucesso!";
-  snackbar.value = true;
-  categoryName.value = "";
-  emit('update:modelValue', false);
+    succesMessage.value = "Categoria criada com sucesso!";
+    snackbar.value = true;
+    categoryName.value = "";
+    emit('update:modelValue', false);
   } catch (error) {
     console.error("Erro ao criar categoria:", error);
     errorMessages.value = "Erro ao criar categoria";
-    snackbar.value = true;
+    errorSnackbar.value = true;
   }
-
 }
 </script>
