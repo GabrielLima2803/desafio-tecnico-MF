@@ -24,13 +24,61 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   - Listagem de categorias disponíveis
   - Validação de categorias em uso
 
-- **Extra**
-  - Interface responsiva com **Vuetify**
-  - Tipagem estática com **TypeScript**
-  - Estado global com Pinia
-  - Comunicação API com **Axios**
-  - Feedback visual com toasts
-  - **Filtros**
+
+## ✨ Funcionalidades Extras
+
+### 🌓 Dark Mode Inteligente
+- **Toggle de Tema com Persistência**
+  - Botão dedicado na barra de navegação
+  - Alternância suave entre temas claro/escuro
+  - Preferência salva em localStorage
+  - Ícone dinâmico (sol/lua)
+  - Compatível com todos os componentes
+
+  ![Exemplo Dark Mode](docs/dark-mode-example.png)
+
+### 📤 Exportação de Dados
+- **Relatórios em PDF Profissionais**
+  - Layout otimizado para impressão
+  - Cabeçalho com dados do usuário
+  - Tabelas com formatação condicional
+  - Download automático em 1 clique
+  
+
+  ![Exemplo PDF](docs/pdf-example.png)
+
+- **Exportação para Excel**
+  - Planilhas formatadas prontas para análise
+  - Fórmulas pré-configuradas (totais, médias)
+  - Tipagem correta de dados (moeda, datas)
+  - Compatível com Google Sheets e Excel Online
+  
+  ![Exemplo Excel](docs/excel-example.png)
+
+### 📊 Visualização Gráfica Avançada
+- **Gráfico de Pizza por Categorias**
+  - Distribuição percentual de gastos
+  - Legenda interativa com valores
+  - Cores temáticas por categoria
+
+- **Gráfico de Barras Temporais**
+  - Evolução mensal de entradas/saídas
+  - Comparativo entre meses
+
+- **Dashboard Resumo**
+  - Cards com métricas chave
+  - Filtros dinâmicos por período
+  - Atualização em tempo real
+  
+  ![Exemplo Gráficos](docs/chart-pie.png)
+
+### ⚙️ Funcionalidades Técnicas
+- Interface responsiva com **Vuetify 3**
+- Tipagem estática com **TypeScript**
+- Gerenciamento de estado com **Pinia**
+- Comunicação API via **Axios**
+- Sistema de notificações com toasts
+- Filtros avançados com persistência
 
 ## 🛠 Tecnologias
 
@@ -45,6 +93,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 - **Laravel 11+**
 - **Laravel Sanctum**
 - **MySQL 8.0**
+- **Maatwebsite**
 - **Eloquent ORM**
 
 ### DevOps & Ferramentas
@@ -60,7 +109,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 
 ## 📦 Instalação
 
-### Método 1: Docker (Recomendado)
+### 🐳 Método 1: Docker (Recomendado)
 
 ```bash
 # Clone o repositório
@@ -77,12 +126,11 @@ docker-compose build --no-cache
 
 # Inicie os containers
 docker-compose up 
-
-# Acesse os serviços:
-# Frontend: http://localhost:3000
-# Backend: http://localhost:8000
-# MySQL: porta 3306
 ```
+### Acesso aos Serviços
+- Frontend: http://localhost:3000
+- Backend: http://localhost:8000
+- Banco de Dados MySQL: Disponível na rede interna na porta 3306
 
 ### Método 2: Instalação Local
 
