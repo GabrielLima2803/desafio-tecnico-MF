@@ -18,21 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import {  ref } from 'vue';
 import LoginUser from './LoginUser.vue';
 import RegisterUser from './RegisterUser.vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-
-onMounted(() => {
-  const token = localStorage.getItem("authToken");
-  if (token) {
-    router.push("/dashbord");
-  } else {
-    router.push("/");
-  }
-});
-
 const activeTab = ref(0);
 </script>
 
