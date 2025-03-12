@@ -114,6 +114,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
 - **Vuetify**
 - **Pinia**
 - **Axios**
+- **Chart.js**
 
 ### Backend
 - **Laravel 11+**
@@ -153,6 +154,11 @@ docker-compose build --no-cache
 # Inicie os containers
 docker-compose up 
 ```
+
+Depois de subir os containers é para está igual a essa imagem
+
+![Demonstração da Aplicação](docs/docker-terminal.png)
+
 ### Acesso aos Serviços
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8000
