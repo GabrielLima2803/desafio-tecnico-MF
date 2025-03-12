@@ -48,7 +48,6 @@ async function onLogin() {
   try {
     await authStore.loginUser(loginData.email, loginData.password);
     router.push("/dashbord");
-    console.log("Usuário logado com sucesso");
   } catch (error: unknown) {
     console.error("Erro no login:", error);
     snackbar.value = true;

@@ -38,6 +38,21 @@
         </v-list>
 
         <v-list density="compact">
+          <v-list-item @click="changeView('list')">
+            <template #prepend>
+              <v-icon icon="mdi-format-list-bulleted"></v-icon>
+            </template>
+            <v-list-item-title v-show="isExpanded">Transações</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="changeView('charts')">
+            <template #prepend>
+              <v-icon icon="mdi-chart-bar"></v-icon>
+            </template>
+            <v-list-item-title v-show="isExpanded">Gráficos</v-list-item-title>
+          </v-list-item>
+        </v-list>
+
+        <v-list density="compact">
           <v-list-item @click="toggleDark">
             <template #prepend>
               <v-icon :icon="isDark ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"></v-icon>
@@ -45,7 +60,25 @@
             <v-list-item-title v-show="isExpanded">Dark Mode</v-list-item-title>
           </v-list-item>
         </v-list>
+
+        <v-list density="compact">
+          <v-list-item @click="handleExportPdf">
+            <template #prepend>
+              <v-icon icon="mdi-file-pdf-box"></v-icon>
+            </template>
+            <v-list-item-title v-show="isExpanded">Exportar PDF</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item @click="handleExportExcel">
+            <template #prepend>
+              <v-icon icon="mdi-file-excel-box"></v-icon>
+            </template>
+            <v-list-item-title v-show="isExpanded">Exportar Excel</v-list-item-title>
+          </v-list-item>
+        </v-list>
       </div>
+
+
 
       <div class="mt-auto">
         <v-divider class="mb-2"></v-divider>
@@ -76,42 +109,81 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useAuthStore } from '../../../stores/auth';
-import { useUserStore } from '../../../stores/user';
-import { useTheme } from 'vuetify';
-import CategoryCreateModal from "../modal/create/CategoryCreateModal.vue";
-import TransactionCreateModal from "../modal/create/TransactionCreateModal.vue";
-import CategoryListModal from "../modal/others/CategoryListModal.vue";
+import { ref, onMounted } from 'vue'
+import { defineEmits } from 'vue'
+import { useAuthStore } from '../../../stores/auth'
+import { useUserStore } from '../../../stores/user'
+import { useExportStore } from '../../../stores/export'
+import { useTheme } from 'vuetify'
+import CategoryCreateModal from "../modal/create/CategoryCreateModal.vue"
+import TransactionCreateModal from "../modal/create/TransactionCreateModal.vue"
+import CategoryListModal from "../modal/others/CategoryListModal.vue"
 
-const theme = useTheme();
-const authStore = useAuthStore();
-const userStore = useUserStore();
-const isDark = ref(theme.global.current.value.dark);
-const isExpanded = ref(true);
-const showCategoryModal = ref(false);
-const showTransactionModal = ref(false);
-const showCategoryListModal = ref(false);
+const emit = defineEmits(['change-view'])
+
+const theme = useTheme()
+const authStore = useAuthStore()
+const userStore = useUserStore()
+const exportStore = useExportStore()
+
+const isDark = ref(theme.global.current.value.dark)
+
+const isExpanded = ref(true)
+const showCategoryModal = ref(false)
+const showTransactionModal = ref(false)
+const showCategoryListModal = ref(false)
+
+const snackbarPdf = ref(false)
+const snackbarExcel = ref(false)
+const errorSnackbar = ref(false)
+const errorMessage = ref('')
+
 
 function toggleDark() {
-  isDark.value = !isDark.value;
-  theme.global.name.value = isDark.value ? 'dark' : 'light';
-  localStorage.setItem('darkTheme', JSON.stringify(isDark.value));
+  isDark.value = !isDark.value
+  theme.global.name.value = isDark.value ? 'dark' : 'light'
+  localStorage.setItem('darkTheme', JSON.stringify(isDark.value))
 }
 
 async function logout() {
-  await authStore.logoutUser();
+  await authStore.logoutUser()
 }
 
-const savedTheme = localStorage.getItem('darkTheme');
+const savedTheme = localStorage.getItem('darkTheme')
 if (savedTheme !== null) {
-  isDark.value = JSON.parse(savedTheme);
-  theme.global.name.value = isDark.value ? 'dark' : 'light';
+  isDark.value = JSON.parse(savedTheme)
+  theme.global.name.value = isDark.value ? 'dark' : 'light'
+}
+
+async function handleExportPdf() {
+  try {
+    await exportStore.downloadPdf()
+    snackbarPdf.value = true
+  } catch (error: unknown) {
+    errorMessage.value = 'Erro ao exportar PDF'
+    errorSnackbar.value = true
+    console.error(error)
+  }
+}
+
+async function handleExportExcel() {
+  try {
+    await exportStore.downloadExcel()
+    snackbarExcel.value = true
+  } catch (error: unknown) {
+    errorMessage.value = 'Erro ao exportar Excel'
+    errorSnackbar.value = true
+    console.error(error)
+  }
 }
 
 onMounted(async () => {
-  await userStore.getUser();
-});
+  await userStore.getUser()
+})
+
+function changeView(view: string) {
+  emit('change-view', view)
+}
 </script>
 
 <style scoped>

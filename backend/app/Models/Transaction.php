@@ -17,6 +17,12 @@ class Transaction extends Model
      'description',
  ];
 
+ protected $casts = [
+    'value' => 'float',
+    'created_at' => 'datetime:d/m/Y H:i',
+    'status' => 'boolean'
+];
+
  public function user()
  {
      return $this->belongsTo(User::class);
