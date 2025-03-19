@@ -84,7 +84,7 @@ Este projeto é um desafio fullstack que visa oferecer uma solução completa pa
   ![Exemplo Excel](docs/excel-example.png)
 
 ### Visualização Gráfica Avançada
-- **Gráfico de Pizza por Categorias**
+- **Gráfico de Pizza por Tipo**
   - Distribuição percentual de gastos
   - Legenda interativa com valores
   - Cores temáticas por categoria
